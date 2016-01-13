@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Command: aping
+ArthurPlug: org.powertrip.excalibot.common.plugins.aping.Server
+KnightPlug: org.powertrip.excalibot.common.plugins.aping.Bot
+
+
