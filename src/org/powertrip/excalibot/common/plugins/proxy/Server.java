@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Integração de Sistemas
- * Pedro Filipe Dinis Stamm de Matos, 2009116927
+ * Proxy Plugin
+ *
+ * This plugin creates a SOCKS5 proxy server on a specified port
+ *
  */
 public class Server extends ArthurPlug{
     public Server(KnightManagerInterface knightManager, TaskManagerInterface taskManager) {

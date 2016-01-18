@@ -10,4 +10,5 @@ Capable of bouncing to other proxies.
 ## Dependencies
 
 common.jar
+
 jsocks.jar
