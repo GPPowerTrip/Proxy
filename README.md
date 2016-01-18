@@ -1,23 +1,13 @@
 # Excalibot
-aPing sample plugin
+Proxy Plugin
 
-Sample plugin, returns the average ping from a number of bots to the defined address.
+Creates a simple SOCKS5 proxy with authentication.
+Capable of bouncing to other proxies.
 
 ## Usage
-	aping address:<address> bots:<number of bots>
+	proxy port:<port> user:<username> password:<password> [proxy_host:<address> proxy_port:<port> proxy_user:<username> proxy_password:<password>]
 
 ## Dependencies
 
-Needs common.jar from common
-Also the manifest file needs to declare the path to the starting classes
-as well as the command the plugin responds to.
-		
-	Manifest-Version: 1.0
-	Command: aping
-	ArthurPlug: org.powertrip.excalibot.common.plugins.aping.Server
-	KnightPlug: org.powertrip.excalibot.common.plugins.aping.Bot
-
-
-## Questions?
-
-	
+common.jar
+jsocks.jar
