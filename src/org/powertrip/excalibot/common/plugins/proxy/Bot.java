@@ -59,8 +59,6 @@ public class Bot extends KnightPlug {
         pr.setProperty("log","-");
         if(user!=null) {
             pr.setProperty("users", user + ":" + password);
-        } else {
-            pr.setProperty("users",null);
         }
         if(proxy_host!=null)
             pr.setProperty("org/powertrip/excalibot/common/plugins/proxy",proxy_host+":"+proxy_port+":"+proxy_user+":"+proxy_pass);
