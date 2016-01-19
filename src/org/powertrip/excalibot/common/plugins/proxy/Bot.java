@@ -61,7 +61,7 @@ public class Bot extends KnightPlug {
             pr.setProperty("users", user + ":" + password);
         }
         if(proxy_host!=null)
-            pr.setProperty("org/powertrip/excalibot/common/plugins/proxy",proxy_host+":"+proxy_port+":"+proxy_user+":"+proxy_pass);
+            pr.setProperty("proxy",proxy_host+":"+proxy_port+":"+proxy_user+":"+proxy_pass);
 
         //Initialize Proxy
         addAuth(auth,pr);
