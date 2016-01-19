@@ -30,18 +30,21 @@ public class Bot extends KnightPlug {
     @Override
     public boolean run(SubTask subTask) {
         SubTaskResult result = subTask.createResult();
-        String user, password,
+        String user = null, password = null,
                 proxy_host=null, proxy_pass=null, proxy_user=null, proxy_port=null;
         int port;
         Logger.log("Starting proxy setup");
         Map args = subTask.getParametersMap();
         Logger.log("Parameters received.");
+
+        //Receive parameters
         port = Integer.parseInt((String)args.get("port"));
-        user = (String) args.get("user");
-        password = (String) args.get("password");
-        /*port = Integer.parseInt(subTask.getParameter("port"));
-        user = subTask.getParameter("user");
-        password = subTask.getParameter("password");*/
+        //Check if user is specified
+        if(args.containsKey("user") && args.containsKey("password")) {
+            user = (String) args.get("user");
+            password = (String) args.get("password");
+        }
+        //Check if external proxy is specified
         if(args.containsKey("proxy_host") && args.containsKey("proxy_port") && args.containsKey("proxy_pass") && args.containsKey("proxy_user")) {
             proxy_host = (String) args.get("proxy_host");
             proxy_port = (String) args.get("proxy_port");
@@ -50,20 +53,22 @@ public class Bot extends KnightPlug {
         }
         Logger.log("Parameters filled");
 
+        //Process parameters
         IdentAuthenticator auth = new IdentAuthenticator();
         Properties pr = new Properties();
         pr.setProperty("log","-");
-        pr.setProperty("users",user+":"+password);
+        if(user!=null) {
+            pr.setProperty("users", user + ":" + password);
+        } else {
+            pr.setProperty("users",null);
+        }
         if(proxy_host!=null)
             pr.setProperty("org/powertrip/excalibot/common/plugins/proxy",proxy_host+":"+proxy_port+":"+proxy_user+":"+proxy_pass);
 
-        Logger.log("Adding Auth");
+        //Initialize Proxy
         addAuth(auth,pr);
-        Logger.log("Proxy Init");
         proxyInit(pr);
-        Logger.log("creating server instance");
         ProxyServer server = new ProxyServer(auth);
-        Logger.log("done creating instance");
 
         result
             .setSuccessful(true)
@@ -76,8 +81,10 @@ public class Bot extends KnightPlug {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        //Start Proxy Server
         Logger.log("Starting Proxy server on port "+port+".");
         server.start(port,5,null);
+        //If something causes Proxy to shut down
         Logger.log("Proxy shutdown.");
 
 

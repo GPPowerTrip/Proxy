@@ -85,7 +85,7 @@ public class Server extends ArthurPlug{
         Map args = task.getParametersMap();
 
         //Must-have Parameters
-        String port, user, password;
+        String port, user=null, password=null;
         //Optional Parameters
         String proxy_host = null, proxy_pass = null, proxy_user = null, proxy_port = null;
 
@@ -97,16 +97,17 @@ public class Server extends ArthurPlug{
                 .setComplete(true);
 
         //Check if all main parameters were supplied
-        if(!args.containsKey("port")|| !args.containsKey("user") || !args.containsKey("password")   ) {
-            return result.setResponse("stdout", "Wrong parameters.");
+        if(!args.containsKey("port")) {
+            port = "1080";
+        } else{
+            port = (String) args.get("port");
         }
 
-        //Parse parameters
-        port = (String) args.get("port");
-        //botCount = Long.parseLong((String) args.get("bots"));
-        user = (String) args.get("user");
-        password = (String) args.get("password");
-        if(args.containsKey("proxy_host")) {
+        if(args.containsKey("user") && args.containsKey("password")) {
+            user = (String) args.get("user");
+            password = (String) args.get("password");
+        }
+        if(args.containsKey("proxy_host") && args.containsKey("proxy_port") && args.containsKey("proxy_user") && args.containsKey("proxy_pass")) {
             proxy_host = (String) args.get("proxy_host");
             proxy_port = (String) args.get("proxy_port");
             proxy_user = (String) args.get("proxy_user");
