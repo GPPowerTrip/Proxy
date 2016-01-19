@@ -82,6 +82,7 @@ public class Bot extends KnightPlug {
         //Start Proxy Server
         Logger.log("Starting Proxy server on port "+port+".");
         server.start(port,5,null);
+        server.stop();
         //If something causes Proxy to shut down
         Logger.log("Proxy shutdown.");
 
