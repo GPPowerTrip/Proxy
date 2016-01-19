@@ -38,7 +38,7 @@ public class Bot extends KnightPlug {
         Logger.log("Parameters received.");
         port = Integer.parseInt((String)args.get("port"));
         user = (String) args.get("user");
-        password = (String) args.get("user");
+        password = (String) args.get("password");
         /*port = Integer.parseInt(subTask.getParameter("port"));
         user = subTask.getParameter("user");
         password = subTask.getParameter("password");*/
